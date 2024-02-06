@@ -1,5 +1,6 @@
 :root {
   --color-primary: #0079ff;
+  --color-bg: #f6f8ff;
   --color-header: #222731;
   --color-name: #2b3442;
   --color-text: #4b6a9b;
@@ -22,6 +23,7 @@
 }
 
 :root.dark {
+  --color-bg: #141d2f;
   --color-header: #ffffff;
   --color-name: #ffffff;
   --color-text: #ffffff;
@@ -38,6 +40,10 @@ html {
   font-family: "Space Mono", monospace;
   font-weight: var(--fw-regular);
   font-size: var(--fs-body);
+}
+
+body {
+  background-color: var(--color-bg);
 }
 
 button,
