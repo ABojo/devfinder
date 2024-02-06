@@ -8,7 +8,62 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-    <title>GitHub Search</title>
+    <title>devfinder</title>
   </head>
-  <body></body>
+  <body>
+    <main class="main">
+      <header class="header">
+        <a class="header__heading" href="#">devfinder</a>
+        <button class="header__toggle">Dark</button>
+      </header>
+      <form class="form">
+        <div class="form__container">
+          <img class="form__icon" src="/assets/images/icon-search.svg" alt="" />
+          <input class="form__input" type="text" />
+          <button class="form__submit">Search</button>
+        </div>
+      </form>
+      <section class="user">
+        <img class="user__img" src="/assets/images/icon-twitter.svg" alt="" />
+        <div class="user__head">
+          <h1 class="user__name">The Octocat</h1>
+          <p class="user__handle">@octocat</p>
+          <p class="user__joined">Joined 25 Jan 2011</p>
+        </div>
+        <p class="user__bio">This profile has no bio</p>
+        <ul class="stats">
+          <li class="stats__item">
+            <span class="stats__title">Repos</span>
+            <span class="stats__value">8</span>
+          </li>
+          <li class="stats__item">
+            <span class="stats__title">Followers</span>
+            <span class="stats__value">3938</span>
+          </li>
+          <li class="stats__item">
+            <span class="stats__title">Following</span>
+            <span class="stats__value">9</span>
+          </li>
+        </ul>
+        <ul class="details">
+          <li class="details__item">
+            <img class="details__icon" src="/assets/images/icon-location.svg" alt="" />
+            San Fransico
+          </li>
+          <li class="details__item">
+            <img class="details__icon" src="/assets/images/icon-twitter.svg" alt="" />
+            Not Available
+          </li>
+          <li class="details__item">
+            <img class="details__icon" src="/assets/images/icon-website.svg" alt="" />
+            <a class="details__link" href="https://github.blog">https://github.blog</a>
+          </li>
+          <li class="details__item">
+            <img class="details__icon" src="/assets/images/icon-company.svg" alt="" />
+            @github
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
 </html>
