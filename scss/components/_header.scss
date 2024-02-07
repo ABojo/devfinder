@@ -8,4 +8,23 @@
     font-weight: var(--fw-bold);
     text-decoration: none;
   }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    background-color: transparent;
+    border: none;
+    font-size: var(--fs-body);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      color: var(--color-toggle-hover);
+    }
+  }
 }
