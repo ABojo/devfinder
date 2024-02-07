@@ -1,3 +1,7 @@
+@use "./components/header";
+@use "./components/form";
+@use "./components/user";
+
 :root {
   --color-primary: #0079ff;
   --color-bg: #f6f8ff;
@@ -20,6 +24,8 @@
 
   --fw-regular: 400;
   --fw-bold: 700;
+
+  --shadow-tile: 0px 16px 30px -10px rgba(70, 96, 187, 0.2);
 }
 
 :root.dark {
@@ -44,9 +50,16 @@ html {
 
 body {
   background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
 button,
 input {
   font: inherit;
+}
+
+.main {
+  max-width: 48rem;
+  margin: 0 auto;
+  margin-top: 9rem;
 }
