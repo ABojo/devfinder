@@ -34,6 +34,56 @@ const storage = {
   },
 };
 
+//setup form handling
+(function () {
+  const formElement = document.querySelector(".form");
+  const errorElement = document.querySelector(".form__error");
+  const usernameInput = document.querySelector(".form__input");
+  const submitElement = document.querySelector(".form__submit");
+
+  function setError(errorMessage) {
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add("form__error--visible");
+  }
+
+  function removeError() {
+    errorElement.classList.remove("form__error--visible");
+  }
+
+  function toggleLoading() {
+    formElement.classList.toggle("form--loading");
+    submitElement.disabled = !submitElement.disabled;
+  }
+
+  formElement.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!usernameInput.value) {
+      return setError("Enter a username");
+    }
+
+    removeError();
+    toggleLoading();
+
+    await new Promise((res, rej) => setTimeout(res, 4000));
+
+    const apiResponse = { success: false };
+
+    if (apiResponse.success) {
+      //userCard.toggleLoading('');
+      //userCard.insertData('');
+    } else {
+      setError("No results");
+    }
+
+    toggleLoading();
+  });
+
+  usernameInput.addEventListener("input", () => {
+    removeError();
+  });
+})();
+
 const UI = {
   setupTheme: function (isDarkModeEnabled) {
     if (isDarkModeEnabled) {
