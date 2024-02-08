@@ -1,18 +1,21 @@
-//constants
-const THEME_STORAGE_KEY = "darkMode";
+//returns storage related functionality
+const storage = (function () {
+  const THEME_STORAGE_KEY = "darkMode";
 
-//utilities
-const storage = {
-  getTheme: function () {
+  function getTheme() {
     return JSON.parse(localStorage.getItem(THEME_STORAGE_KEY));
-  },
-  saveTheme: function (darkModeEnabled) {
+  }
+
+  function saveTheme(darkModeEnabled) {
     localStorage.setItem(THEME_STORAGE_KEY, darkModeEnabled);
-  },
-  toggleTheme: function () {
+  }
+
+  function toggleTheme() {
     localStorage.setItem(THEME_STORAGE_KEY, !this.getTheme());
-  },
-};
+  }
+
+  return { getTheme, saveTheme, toggleTheme };
+})();
 
 //setup form handling
 (function () {
