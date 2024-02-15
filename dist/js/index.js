@@ -1,3 +1,11 @@
+//fetches user data
+async function getUserData(username) {
+  const response = await fetch(`/api/user/${username}`);
+  const data = await response.json();
+
+  return data;
+}
+
 //returns storage related functionality
 const storage = (function () {
   const THEME_STORAGE_KEY = "darkMode";
@@ -48,11 +56,9 @@ const storage = (function () {
     removeError();
     toggleLoading();
 
-    await new Promise((res, rej) => setTimeout(res, 4000));
+    const userData = await getUserData(usernameInput.value);
 
-    const apiResponse = { success: false };
-
-    if (apiResponse.success) {
+    if (userData.status === "success") {
       //userCard.toggleLoading('');
       //userCard.insertData('');
     } else {
