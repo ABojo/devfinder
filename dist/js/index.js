@@ -25,6 +25,110 @@ const storage = (function () {
   return { getTheme, saveTheme, toggleTheme };
 })();
 
+const userCard = (function () {
+  const userElement = document.querySelector(".user");
+
+  const imageElement = userElement.querySelector(".user__img");
+  const nameElement = userElement.querySelector(".user__name");
+  const dateElement = userElement.querySelector(".user__joined");
+  const handleElement = userElement.querySelector(".user__handle");
+  const bioElement = userElement.querySelector(".user__bio");
+
+  const repoElement = document.getElementById("repos");
+  const followersElement = document.getElementById("followers");
+  const followingElement = document.getElementById("following");
+
+  const locationElement = document.getElementById("location");
+  const twitterElement = document.getElementById("twitter");
+  const websiteElement = document.getElementById("website");
+  const companyElement = document.getElementById("company");
+
+  const detailMap = [
+    { element: locationElement, property: "location" },
+    { element: twitterElement, property: "twitter" },
+    { element: websiteElement, property: "website" },
+    { element: companyElement, property: "company" },
+  ];
+
+  function formatDateString(dateObject) {
+    const date = new Date(dateObject);
+
+    const day = date.getDay();
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
+  }
+
+  function formatUrl(urlString) {
+    if (urlString.includes("http")) return urlString;
+
+    return `http://${urlString}`;
+  }
+
+  function updateImage(data) {
+    const { avatarUrl, alt } = data;
+
+    imageElement.src = avatarUrl;
+    imageElement.alt = `${alt} profile picture`;
+  }
+
+  function updateHead(data) {
+    const { name, username, joinDate, bio } = data;
+
+    nameElement.textContent = name;
+    handleElement.textContent = `@${username}`;
+    dateElement.textContent = `Joined ${formatDateString(joinDate)}`;
+    bioElement.textContent = bio || "This profile has no bio";
+  }
+
+  function updateStats(data) {
+    const { repos, following, followers } = data;
+
+    repoElement.textContent = repos;
+    followersElement.textContent = following;
+    followingElement.textContent = followers;
+  }
+
+  function updateDetails(data) {
+    detailMap.forEach(({ element, property }) => {
+      element.textContent = data[property] || "Not Available";
+
+      if (data[property] === null) {
+        element.parentElement.classList.add("details__item--unavailable");
+      } else {
+        element.parentElement.classList.remove("details__item--unavailable");
+      }
+    });
+
+    websiteElement.href = formatUrl(data.website);
+  }
+
+  function updateCard(userData) {
+    const {
+      avatarUrl,
+      name,
+      username,
+      joinDate,
+      bio,
+      repos,
+      followers,
+      following,
+      twitter,
+      company,
+      location,
+      website,
+    } = userData;
+
+    updateImage({ avatarUrl, name });
+    updateHead({ name, username, joinDate, bio });
+    updateStats({ repos, following, followers });
+    updateDetails({ twitter, location, company, website });
+  }
+
+  return { updateCard };
+})();
+
 //setup form handling
 (function () {
   const formElement = document.querySelector(".form");
@@ -59,8 +163,7 @@ const storage = (function () {
     const userData = await getUserData(usernameInput.value);
 
     if (userData.status === "success") {
-      //userCard.toggleLoading('');
-      //userCard.insertData('');
+      userCard.updateCard(userData.data);
     } else {
       setError("No results");
     }
