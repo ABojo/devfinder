@@ -20,6 +20,7 @@ app.get("/api/user/:username", async (req, res) => {
       status: "success",
       data: {
         username: data.login,
+        avatarUrl: data.avatar_url,
         name: data.name,
         bio: data.bio,
         joinDate: data.created_at,
