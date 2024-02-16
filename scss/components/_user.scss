@@ -87,6 +87,10 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+
+    &--unavailable {
+      opacity: 0.5;
+    }
   }
 
   &__link {
