@@ -94,7 +94,7 @@ const userCard = (function () {
     detailMap.forEach(({ element, property }) => {
       element.textContent = data[property] || "Not Available";
 
-      if (data[property] === null) {
+      if (!data[property]) {
         element.parentElement.classList.add("details__item--unavailable");
       } else {
         element.parentElement.classList.remove("details__item--unavailable");
