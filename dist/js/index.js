@@ -126,7 +126,11 @@ const userCard = (function () {
     updateDetails({ twitter, location, company, website });
   }
 
-  return { updateCard };
+  function toggleLoading() {
+    userElement.classList.toggle("user--loading");
+  }
+
+  return { updateCard, toggleLoading };
 })();
 
 //setup form handling
@@ -159,6 +163,7 @@ const userCard = (function () {
 
     removeError();
     toggleLoading();
+    userCard.toggleLoading();
 
     const userData = await getUserData(usernameInput.value);
 
@@ -169,6 +174,7 @@ const userCard = (function () {
     }
 
     toggleLoading();
+    userCard.toggleLoading();
   });
 
   usernameInput.addEventListener("input", () => {
