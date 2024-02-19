@@ -24,6 +24,7 @@
     border-radius: 0.9375rem;
     opacity: 0;
     transition: all 0.2s;
+    z-index: -1;
   }
 
   &__spinner {
@@ -45,6 +46,7 @@
   &--loading &__overlay,
   &--loading &__spinner {
     opacity: 1;
+    z-index: 1;
   }
 
   &__img {
