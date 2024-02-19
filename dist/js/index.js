@@ -28,11 +28,20 @@ const storage = (function () {
 const userCard = (function () {
   const userElement = document.querySelector(".user");
 
-  const imageElement = userElement.querySelector(".user__img");
+  const imageBoxElement = userElement.querySelector(".user__img");
+  const imageElement = imageBoxElement.children[1];
   const nameElement = userElement.querySelector(".user__name");
   const dateElement = userElement.querySelector(".user__joined");
   const handleElement = userElement.querySelector(".user__handle");
   const bioElement = userElement.querySelector(".user__bio");
+
+  if (imageElement.complete) {
+    imageBoxElement.classList.remove("user__img--loading");
+  }
+
+  imageElement.addEventListener("load", () => {
+    imageBoxElement.classList.remove("user__img--loading");
+  });
 
   const repoElement = document.getElementById("repos");
   const followersElement = document.getElementById("followers");
@@ -69,6 +78,7 @@ const userCard = (function () {
   function updateImage(data) {
     const { avatarUrl, alt } = data;
 
+    imageBoxElement.classList.add("user__img--loading");
     imageElement.src = avatarUrl;
     imageElement.alt = `${alt} profile picture`;
   }
