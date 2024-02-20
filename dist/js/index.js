@@ -69,10 +69,28 @@ const userCard = (function () {
     return `${day} ${month} ${year}`;
   }
 
-  function formatUrl(urlString) {
+  function formatUrlHref(urlString) {
     if (urlString.includes("http")) return urlString;
 
     return `http://${urlString}`;
+  }
+
+  function formatUrlText(urlString) {
+    let currentString = urlString;
+
+    if (urlString.includes("://")) {
+      currentString = currentString.split("://")[1];
+    }
+
+    if (urlString.includes("www.")) {
+      currentString = currentString.split("www.")[1];
+    }
+
+    if (currentString.length > 24) {
+      currentString = currentString.slice(0, 22) + "...";
+    }
+
+    return currentString;
   }
 
   function updateImage(data) {
@@ -118,7 +136,8 @@ const userCard = (function () {
       }
     });
 
-    websiteElement.href = formatUrl(data.website);
+    websiteElement.textContent = formatUrlText(data.website);
+    websiteElement.href = formatUrlHref(data.website);
   }
 
   function updateCard(userData) {
