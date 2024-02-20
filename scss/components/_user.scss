@@ -161,6 +161,10 @@
     }
   }
 
+  &__icon {
+    width: 1.25rem;
+  }
+
   &__link {
     color: var(--color-text);
     text-decoration: none;
