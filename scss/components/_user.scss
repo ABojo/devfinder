@@ -84,6 +84,7 @@
   &__bio {
     grid-area: bio;
     margin-top: 1rem;
+    line-height: var(--lh-body);
   }
 
   &__head {
