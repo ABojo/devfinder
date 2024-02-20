@@ -25,6 +25,40 @@ const storage = (function () {
   return { getTheme, saveTheme, toggleTheme };
 })();
 
+const formatters = {
+  date: function (dateObject) {
+    const date = new Date(dateObject);
+
+    const day = date.getDay();
+    const month = date.toLocaleString("default", { month: "short" });
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
+  },
+  urlHref: function (urlString) {
+    if (urlString.includes("http")) return urlString;
+
+    return `http://${urlString}`;
+  },
+  urlText: function (urlString) {
+    let currentString = urlString;
+
+    if (urlString.includes("://")) {
+      currentString = currentString.split("://")[1];
+    }
+
+    if (urlString.includes("www.")) {
+      currentString = currentString.split("www.")[1];
+    }
+
+    if (currentString.length > 24) {
+      currentString = currentString.slice(0, 22) + "...";
+    }
+
+    return currentString;
+  },
+};
+
 const userCard = (function () {
   const userElement = document.querySelector(".user");
 
@@ -59,40 +93,6 @@ const userCard = (function () {
     { element: companyElement, property: "company" },
   ];
 
-  function formatDateString(dateObject) {
-    const date = new Date(dateObject);
-
-    const day = date.getDay();
-    const month = date.toLocaleString("default", { month: "short" });
-    const year = date.getFullYear();
-
-    return `${day} ${month} ${year}`;
-  }
-
-  function formatUrlHref(urlString) {
-    if (urlString.includes("http")) return urlString;
-
-    return `http://${urlString}`;
-  }
-
-  function formatUrlText(urlString) {
-    let currentString = urlString;
-
-    if (urlString.includes("://")) {
-      currentString = currentString.split("://")[1];
-    }
-
-    if (urlString.includes("www.")) {
-      currentString = currentString.split("www.")[1];
-    }
-
-    if (currentString.length > 24) {
-      currentString = currentString.slice(0, 22) + "...";
-    }
-
-    return currentString;
-  }
-
   function updateImage(data) {
     const { avatarUrl, alt } = data;
 
@@ -113,7 +113,7 @@ const userCard = (function () {
     }
 
     handleElement.textContent = `@${username}`;
-    dateElement.textContent = `Joined ${formatDateString(joinDate)}`;
+    dateElement.textContent = `Joined ${formatters.date(joinDate)}`;
     bioElement.textContent = bio || "This profile has no bio";
   }
 
@@ -136,8 +136,8 @@ const userCard = (function () {
       }
     });
 
-    websiteElement.textContent = formatUrlText(data.website);
-    websiteElement.href = formatUrlHref(data.website);
+    websiteElement.textContent = formatters.urlText(data.website) || "Not Available";
+    websiteElement.href = formatters.urlHref(data.website);
   }
 
   function updateCard(userData) {
