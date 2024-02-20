@@ -86,7 +86,14 @@ const userCard = (function () {
   function updateHead(data) {
     const { name, username, joinDate, bio } = data;
 
-    nameElement.textContent = name;
+    nameElement.textContent = name || "Empty Name";
+
+    if (!name) {
+      nameElement.classList.add("user__name--empty");
+    } else {
+      nameElement.classList.remove("user__name--empty");
+    }
+
     handleElement.textContent = `@${username}`;
     dateElement.textContent = `Joined ${formatDateString(joinDate)}`;
     bioElement.textContent = bio || "This profile has no bio";
