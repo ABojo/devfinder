@@ -184,6 +184,14 @@
       opacity: 1;
     }
   }
+
+  &__item--unavailable &__link {
+    pointer-events: none;
+
+    &:hover::after {
+      opacity: 0;
+    }
+  }
 }
 
 @keyframes rotation {
