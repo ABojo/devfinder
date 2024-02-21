@@ -136,6 +136,8 @@ const userCard = (function () {
       }
     });
 
+    twitterElement.href = `https://twitter.com/${data.twitter}`;
+
     websiteElement.textContent = formatters.urlText(data.website) || "Not Available";
     websiteElement.href = formatters.urlHref(data.website);
   }
