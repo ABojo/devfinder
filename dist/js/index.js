@@ -113,6 +113,7 @@ const userCard = (function () {
     }
 
     handleElement.textContent = `@${username}`;
+    handleElement.href = `https://github.com/${username}`;
     dateElement.textContent = `Joined ${formatters.date(joinDate)}`;
     bioElement.textContent = bio || "This profile has no bio";
   }

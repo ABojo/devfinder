@@ -107,6 +107,23 @@
   &__handle {
     color: var(--color-primary);
     margin-top: 0.5rem;
+    text-decoration: none;
+    justify-self: start;
+
+    &::after {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 1px;
+      margin-top: -0.2rem;
+      background-color: var(--color-primary);
+      transition: all 0.2s;
+      opacity: 0;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
   }
 
   &__joined {
